@@ -1,7 +1,7 @@
 # java-core
 
 
-# mvn archetype:generate -DgroupId=com.hello -DartifactId=hello-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -Dinteractive=false
+mvn archetype:generate -DgroupId=com.hello -DartifactId=hello-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -Dinteractive=false
 
 cd hello-app
 
