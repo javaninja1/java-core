@@ -1,50 +1,63 @@
 package com.hello.linkedlist;
 
+
 public class RevLinkedList {
 
     public static void main(String args[]) {
         new RevLinkedList();
     }
 
+    // {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2}
     public RevLinkedList() {
-//[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]
-//[5,6,4]
-        ListNode result = reverseList(TwoSumLinkedList.getListNodeFromArray(new int[]{5, 6, 4}));
-        System.out.println(result);
+        int[] arr = {}; // {1,0,0,0,0,33,44,55,0,0,0,2}; //{5,6,7};
+        ListNode head = listFromArr(arr);
+        printList(head);
+        ListNode result = reverseList(head);
+        printList(result);
     }
 
-
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode() {}
-     * ListNode(int val) { this.val = val; }
-     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-     * }
-     */
-
-    public ListNode reverseList(ListNode head) {
-        ListNode previous = null;
-        ListNode current = head;
-        ListNode next = null;
-        //[1,2,3,4,5]
-        if (current != null) {
-            while (current.next != null) {
-                next = current.next; // 2
-                current.next = previous; // null
-                previous = current; // 1
-                current = next; //2
+    private void printList(ListNode result) {
+        System.out.println("~~~~~~~List~~~~~~");
+        if (result != null) {
+            while (result.next != null) {
+                System.out.print(result.val + "->");
+                result = result.next;
             }
-            current.next = previous;
+            System.out.println(result.val);
         }
+    }
 
-        return current;
+    private ListNode listFromArr(int[] arr) {
+        ListNode next = null;
+        for (int i=arr.length-1; i>=0; i--) {
+            ListNode node = new ListNode(arr[i]);
+            node.next = next;
+            next = node;
+        }
+        return next;
+    }
+
+    private ListNode reverseList(ListNode head) {
+        ListNode prev=null, cur = head, next = null;
+        if (cur != null ) {
+            while (cur.next != null) {
+                next = cur.next;
+                cur.next = prev;
+                prev = cur;
+                cur = next;
+            }
+            cur.next = prev;
+        }
+        return cur;
+    }
+
+
+
+
+
 
     }
 
 
-}
 
 

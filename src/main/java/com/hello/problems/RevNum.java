@@ -1,4 +1,4 @@
-package com.hello.simple;
+package com.hello.problems;
 
 public class RevNum {
 
@@ -6,30 +6,28 @@ public class RevNum {
         RevNum obj = new RevNum();
         System.out.println(obj.rev(-2147483648));
         System.out.println(obj.reverse(-2147483648));
+
+        System.out.println(obj.reverse(2789781));
+        System.out.println(obj.reverse(100000000));
+
         System.out.println(obj.isPalindrome(121));
+        System.out.println(obj.isPalindrome(-121));
     }
 
     // -123 != palindrome(321)
-    public boolean isPalindrome(int x) {
+    public boolean isPalindrome(long x) {
       if(x < 0) return false;
-      int y = x;
-      int rev = 0;
-      while (x != 0) {
-          int digit = x%10; //3  | 2 | 1
-          x /= 10; //12 | 1
-          rev = rev * 10 + digit; // 0*0 + 3 | 30 + 2 | 320 + 1
-      }
-      return (y == rev);
+      return ( x==  reverse(x));
     }
 
-    public int reverse(int x) {
-        int rev = 0;
+    //if (rev > Integer.MAX_VALUE/10 || (rev == Integer.MAX_VALUE / 10 && pop > 7)) return 0;
+    //if (rev < Integer.MIN_VALUE/10 || (rev == Integer.MIN_VALUE / 10 && pop < -8)) return 0;
+    long reverse(long x) {
+        long rev =0;
         while (x != 0) {
-            int pop = x % 10;
-            x /= 10;
-            if (rev > Integer.MAX_VALUE/10 || (rev == Integer.MAX_VALUE / 10 && pop > 7)) return 0;
-            if (rev < Integer.MIN_VALUE/10 || (rev == Integer.MIN_VALUE / 10 && pop < -8)) return 0;
-            rev = rev * 10 + pop;
+            long pop = x%10;
+            x = x/10;
+            rev = rev *10 + pop;
         }
         return rev;
     }

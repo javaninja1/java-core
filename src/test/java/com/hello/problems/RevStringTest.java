@@ -1,5 +1,6 @@
-package com.hello.simple;
+package com.hello.problems;
 
+import com.hello.string.RevString;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

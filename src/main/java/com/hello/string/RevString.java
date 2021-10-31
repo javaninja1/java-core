@@ -1,17 +1,25 @@
-package com.hello.simple;
+package com.hello.string;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class RevString {
 
+    public static void main2(String args[]) {
+        String str = null;
+        Optional<String> op = Optional.ofNullable(str);
+        System.out.println(op.orElse("bbb"));
+    }
+
     public static void main(String[] args) {
 
-      Consumer<String> consumer = (String name) -> { System.out.println(name);};
-      String str = "abcd";
+      Consumer<String> log = (e) ->  System.out.println(e);
 
+      String str = "abcd";
       RevString revString = new RevString();
-      consumerDemo(consumer, "rev::" + revString.getReverseWord(str));
+      log.accept("rev::" + revString.getReverseWord(str));
+      log.accept("rev2::" + revString.revStr(str));
 
       System.out.println("anagram::" + isAnagram("abcdefg","fgadbce"));
 	  //subStrings("assadqweqwea", "aws");
@@ -28,6 +36,7 @@ public class RevString {
         return word.charAt(word.length()- 1) + getReverseWord(word.substring(0, word.length() - 1));
     }
 
+
     private static boolean isAnagram(String str1 , String str2) {
         char[] charStr1  = str1.toCharArray();
         char[] charStr2 = str2.toCharArray();
@@ -38,10 +47,17 @@ public class RevString {
         return Arrays.equals(charStr1, charStr2 );
     }
 
+    private  String revStr(String str) {
+        char[] rev  = new char[str.length()];
+        for (int i=0; i< str.length(); i++) {
+            rev[i] = str.charAt(str.length()-i-1);
+        }
+        return new String(rev);
+    }
+
     private static String reverseString(String str) {
         char[] rev = new char[str.length()];
         for (int i=0; i<str.length(); i++) {
-            System.out.println(str.charAt(i));
             rev[str.length()-(i+1)] = str.charAt(i);
         }
         return new String(rev);

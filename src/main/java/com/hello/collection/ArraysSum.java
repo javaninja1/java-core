@@ -12,6 +12,18 @@ public class ArraysSum {
     public static void main(String[] args) {
         int[][] arr= {{1,2}, {3,4},{13,4},{33,4}};
         sum(arr);
+        System.out.println("~~~~~~~~~~~~~~");
+        sumArr(arr);
+    }
+
+    static void sumArr(int [][] arr) {
+        List<List<Integer>> listOfLists = Arrays.stream(arr).map(e ->
+                 Arrays.stream(e).boxed().collect(Collectors.toList())).collect(Collectors.toList());
+
+        listOfLists.parallelStream().mapToInt(
+                e -> e.stream().reduce(Integer::sum).orElse(0)
+        ).forEach(System.out::println);
+
     }
 
     static void sum (int[][] ar ) {
@@ -22,10 +34,8 @@ public class ArraysSum {
         for (int i=0; i< ar.length; i++) {
             List<Integer> intList = Arrays.stream(ar[i]).boxed().collect(Collectors.toList());
             listOfLists.add(intList);
-            //mapList.put(i, intList);
         }
-//        mapList.entrySet().stream()
-//        .collect(collector)
+
 
         listOfLists.parallelStream()
                 .mapToInt( e -> e.stream().reduce(Integer::sum).orElse(0))

@@ -9,18 +9,13 @@ public class TwoSumLinkedList {
     }
 
     static ListNode getListNodeFromArray(int[] arr) {
-        ListNode firstNode = null;
-        ListNode previousNode = null;
-        for (int j = 0; j < arr.length; j++) {
-            ListNode node = new ListNode(arr[j]);
-            if (firstNode == null) {
-                firstNode = node;
-            } else {
-                previousNode.next = node;
-            }
-            previousNode = node;
+        ListNode next = null;
+        for (int i=arr.length-1; i>=0; i--) {
+            ListNode node = new ListNode(arr[i]);
+            node.next = next;
+            next = node;
         }
-        return firstNode;
+        return next;
     }
 
     public TwoSumLinkedList() {
@@ -47,11 +42,8 @@ public class TwoSumLinkedList {
         BigInteger b2 = new BigInteger(num2);
 
         BigInteger result = b1.add(b2);
-
         System.out.println("sum:" + result);
-
         String resultStr = "" + result;
-
         String nodeStr = reverseString(resultStr);
 
         ListNode firstNode = null;
